@@ -1,28 +1,37 @@
-MOONLIGHT JOURNALS - GITHUB PAGES WEBSITE
+MOONLIGHT JOURNALS — CUSTOM STOREFRONT & ORDER FORMS
 
 FILES
-- index.html          Home page
-- contact.html        Contact information
-- storefront.html     Branching storefront page
-- standard-order.html Standard Google Form embedded on the page
-- custom-order.html   Custom-size Google Form embedded on the page
-- styles.css          Shared visual styling
+- index.html: home page
+- storefront.html: standard/custom order choice
+- standard-order.html: standard size order form
+- custom-order.html: custom dimension order form
+- contact.html: contact details and message helper
+- styles.css: responsive boutique/checkout styling
+- order.js: dynamic choices, validation, and submission handling
+- Code.gs: Google Apps Script email endpoint
 
-PUBLISH WITH GITHUB PAGES
-1. Create or open your GitHub repository.
-2. Upload all six files into the same directory (repository root is easiest).
-3. Commit the files to your chosen branch, usually main.
-4. Open repository Settings > Pages.
-5. Select Deploy from a branch, choose main and /(root), then save.
-6. Wait for GitHub Pages to publish and open the URL it provides.
+IMPORTANT: The website is static HTML and cannot send email on its own. Before publishing, deploy Code.gs as a Google Apps Script Web App and paste its Web App URL into order.js where it says:
+  PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE
 
-GOOGLE FORMS
-The two order pages embed the original Google Forms and also include a button to open each form in a new tab. Responses go directly to the existing Google Forms owner; this site does not store order responses.
+SET UP THE EMAIL ENDPOINT
+1. Sign in to the Google account that should send the order emails and open https://script.google.com/.
+2. Create a new project. Replace the starter code with the contents of Code.gs.
+3. Save the project.
+4. Select Deploy > New deployment. Choose type: Web app.
+5. Set “Execute as” to your account. Set access to “Anyone” so customers who visit the public GitHub Pages website can submit orders. This makes the endpoint public; keep the honeypot/validation in place and monitor email for spam.
+6. Deploy and authorize the requested MailApp permission. Copy the Web app URL ending in /exec.
+7. In order.js, replace PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE with that full URL. Commit/push all files to GitHub Pages.
+8. Test a standard order and a custom order. Verify the email arrives at moonlightjournals.co@gmail.com and check reply-to is the customer's email.
 
-CONTACT PAGE
-The email button opens the visitor's email app. This is suitable for a static GitHub Pages site and does not require a backend. Instagram links to the account referenced in the original form.
+IMPORTANT BEHAVIOR
+- This setup emails order details to the shop owner. It does NOT submit answers into the original Google Forms or their response spreadsheets.
+- The $35 deposit is not collected by the website. The form records the customer's acknowledgement only.
+- The customer must choose a delivery address. Local drop-off is limited to within 15 miles of Detroit, MI; shipping is $7 and local drop-off is $5.
+- Standard prices: Passport $50, B6 $55, A6 $60, A5 $65. Passport supports 2 or 4 journals only; other standard sizes support 2, 4, or 6. Custom orders request dimensions and are priced after review.
+- The contact page's simple form opens the visitor's default email app; it does not send a message silently.
 
-NOTES
-- The design uses CSS-drawn decorative artwork and does not require image assets.
-- Check all page content, prices, policies, and contact details with the business owner before publishing.
-- The embedded forms may need their sharing settings configured by the form owner to allow the intended audience to respond.
+BEFORE GOING LIVE
+- Confirm the owner email and prices are correct.
+- Confirm whether Instagram should be required only when chosen as the preferred contact method (current behavior).
+- Submit a test order and verify the email formatting, delivery choices, and mobile layout.
+- Because the web app is public, do not collect payment card data or sensitive personal information in these forms.
