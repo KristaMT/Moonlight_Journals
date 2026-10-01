@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Handmade leather journal covers from Moonlight Journals.">
+  <title>Storefront | Moonlight Journals</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html">Moonlight Journals<small>Handmade with intention</small></a>
+      <nav aria-label="Main navigation"><a href="index.html">Home</a>
+<a href="storefront.html" aria-current="page">Storefront</a>
+<a href="contact.html">Contact</a></nav>
+    </div>
+  </header>
+  <main>
+
+    <section class="container page-intro">
+      <div class="eyebrow">The storefront</div>
+      <h1>Choose your journal cover.</h1>
+      <p>Start with the standard sizes offered, or request a custom cover for a journal with different dimensions.</p>
+      <div class="notice"><strong>Before ordering:</strong> Orders are made to order and require a non-refundable $35 deposit to secure leather. Please allow 2–3 weeks for processing. Shipping is $7; local drop-off is $5 within 15 miles of Detroit, Michigan. Review the full details in the order form before submitting.</div>
+    </section>
+    <section class="container order-grid">
+      <article class="order-card">
+        <span class="pill">Standard sizes</span>
+        <h2 style="margin-top:18px">Standard journal covers</h2>
+        <p>For the available sizes: Passport ($50), B6 ($55), A6 ($60), and A5 ($65). Customize your leather color, fold style, hardware, and notebook options in the order form.</p>
+        <a class="button" href="standard-order.html">Order a Standard Size</a>
+      </article>
+      <article class="order-card">
+        <span class="pill">Made to fit</span>
+        <h2 style="margin-top:18px">Custom-size covers</h2>
+        <p>Have a journal with dimensions outside the standard options? Submit its length, width, and height. Custom pricing will be provided for your approval before the maker proceeds.</p>
+        <a class="button" href="custom-order.html">Request a Custom Size</a>
+      </article>
+    </section>
+
+  </main>
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Moonlight Journals</span>
+      <span>Made slowly. Made thoughtfully.</span>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
