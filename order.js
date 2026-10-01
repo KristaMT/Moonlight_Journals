@@ -92,3 +92,42 @@ document.addEventListener('DOMContentLoaded', () => {
     window.setTimeout(() => { if (submitButton.disabled) { submitButton.disabled=false; submitButton.textContent='Send order request →'; setMessage('The request was submitted, but this page could not confirm delivery. Please contact moonlightjournals.co@gmail.com to verify before sending payment.', true); } }, 12000);
   });
 });
+
+
+/* Use each existing swatch color for its entire option button */
+document.addEventListener("DOMContentLoaded", () => {
+  const colorOptions = document.querySelectorAll(".swatch-option");
+
+  colorOptions.forEach((option) => {
+    const sample = option.querySelector(".swatch");
+
+    if (!sample) return;
+
+    const color = getComputedStyle(sample).backgroundColor;
+    const rgb = color.match(/[\d.]+/g);
+
+    if (!rgb || rgb.length < 3) return;
+
+    const [r, g, b] = rgb.slice(0, 3).map(Number);
+
+    // Calculate brightness so text stays readable on light
+    // and dark colors.
+    const channels = [r, g, b].map((value) => {
+      const normalized = value / 255;
+
+      return normalized <= 0.04045
+        ? normalized / 12.92
+        : Math.pow((normalized + 0.055) / 1.055, 2.4);
+    });
+
+    const luminance =
+      0.2126 * channels[0] +
+      0.7152 * channels[1] +
+      0.0722 * channels[2];
+
+    const textColor = luminance > 0.42 ? "#211a20" : "#ffffff";
+
+    option.style.setProperty("--swatch-color", color);
+    option.style.setProperty("--swatch-ink", textColor);
+  });
+});
