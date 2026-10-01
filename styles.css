@@ -150,3 +150,91 @@
 
 }
 
+/* Color options: fill the entire button with its color */
+.swatch-option {
+  --swatch-color: #eee8ed;
+  --swatch-ink: #3b3038;
+
+  position: relative;
+  min-height: 72px;
+  padding: 15px 34px 15px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e4dce2;
+  border-radius: 12px;
+  background-color: #fff;
+  color: #3b3038;
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+/* Remove the small circle swatches */
+.swatch-option .swatch {
+  display: none;
+}
+
+/* Center the color name */
+.swatch-option .choice-copy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: inherit;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+/* Hover: fill the whole button with its color */
+.swatch-option:hover,
+.swatch-option:focus-within {
+  background-color: var(--swatch-color);
+  color: var(--swatch-ink);
+  border-color: var(--swatch-color);
+  box-shadow: inset 0 0 0 1px var(--swatch-ink);
+  transform: translateY(-1px);
+}
+
+/* Selected: keep the color visible after clicking */
+.swatch-option:has(input[type="radio"]:checked) {
+  background-color: var(--swatch-color);
+  color: var(--swatch-ink);
+  border-color: var(--swatch-color);
+  box-shadow: inset 0 0 0 2px var(--swatch-ink);
+}
+
+/* Keep color names readable */
+.swatch-option .choice-copy small {
+  color: inherit;
+  opacity: 0.85;
+}
+
+/* Position the radio control neatly */
+.swatch-option input[type="radio"] {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  margin: 0;
+  accent-color: var(--swatch-ink);
+}
+
+/* Keyboard accessibility */
+.swatch-option:focus-within {
+  outline: 2px solid var(--plum);
+  outline-offset: 3px;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .swatch-option {
+    transition: none;
+    transform: none;
+  }
+}
+
