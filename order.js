@@ -44,28 +44,58 @@ document.addEventListener('DOMContentLoaded', () => {
     instagramField?.classList.toggle('hidden', !show);
     if (instagram) instagram.required = show;
   };
-  const updateSize = () => {
-    const chosen = form.querySelector('[name="journalSize"]:checked');
-    if (!chosen) return;
-    const size = chosen.value;
-    if (sizeSummary) sizeSummary.textContent = `${size} journal`;
-    if (priceText) priceText.textContent = `$${chosen.dataset.price}`;
+   
+const updateType = () => {
+  const foldStyle = selected('foldStyle');
+  const typeSummary = document.getElementById('summary-type');
+
+  if (typeSummary) {
+    typeSummary.textContent = foldStyle || 'Not selected';
+  }
+};
+
+
+const updateSize = () => {
+  const chosen = form.querySelector('[name="journalSize"]:checked');
+
+  if (chosen) {
+    if (sizeSummary) {
+      sizeSummary.textContent = `${chosen.value} journal`;
+    }
+
+    if (priceText) {
+      priceText.textContent = `$${chosen.dataset.price}`;
+    }
+
     updateCountOptions();
-  };
+  }
+};
+
   form.addEventListener('change', e => {
+   if (e.target.name === 'foldStyle') updateType();
     if (e.target.name === 'deliveryMethod') updateDelivery();
     if (e.target.name === 'contactMethod') updateContact();
     if (e.target.name === 'journalSize') updateSize();
   });
-  updateDelivery(); updateContact(); updateCountOptions();
+ updateDelivery();
+updateContact();
+updateCountOptions();
+updateType();
   if (kind === 'custom') {
     const dimensions = document.getElementById('dimensions');
-    dimensions?.addEventListener('input', () => { if (sizeSummary) sizeSummary.textContent = dimensions.value.trim() ? 'Entered' : 'Not entered'; });
+   dimensions?.addEventListener('input', () => {
+  if (sizeSummary) {
+    sizeSummary.textContent =
+      dimensions.value.trim() || 'Not entered';
   }
+});
   form.addEventListener('submit', e => {
     e.preventDefault();
     message.style.display='none';
-    updateDelivery(); updateContact(); updateCountOptions();
+    updateDelivery();
+updateContact();
+updateCountOptions();
+updateType();
     if (!form.reportValidity()) return;
     if (form.querySelector('[name="website"]').value) return;
     if (APPS_SCRIPT_URL.includes('PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE')) {
@@ -84,7 +114,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (event.data && event.data.type === 'moonlight-order-result') {
         window.removeEventListener('message', handler);
         submitButton.disabled = false; submitButton.textContent = 'Send order request →';
-        if (event.data.ok) { setMessage('Thank you! Your order request has been emailed to Moonlight Journals. The maker will follow up using your preferred contact method.'); form.reset(); updateDelivery(); updateContact(); updateCountOptions(); if (priceText && kind==='standard') priceText.textContent='From $50'; if (sizeSummary) sizeSummary.textContent=kind==='custom'?'Not entered':'Not selected'; }
+        if (event.data.ok) { setMessage('Thank you! Your order request has been emailed to Moonlight Journals. The maker will follow up using your preferred contact method.'); form.reset(); updateDelivery();
+updateContact();
+updateCountOptions();
+updateType(); if (priceText && kind==='standard') priceText.textContent='From $50'; if (sizeSummary) sizeSummary.textContent=kind==='custom'?'Not entered':'Not selected'; }
         else setMessage('Sorry, the order could not be confirmed. Please contact the shop directly or try again.', true);
       }
     });
