@@ -148,14 +148,29 @@
                           <div class="form-actions">
                             <a class="button secondary" href="storefront.html">← Back to storefront</a>
                             <button class="button" id="submit-button" type="submit">Send order request <span aria-hidden="true">→</span></button></div></section></form>
-            <iframe title="Order submission response" name="submit-frame" id="submit-frame" class="sr-only"></iframe></div><aside class="summary-card">
+            <iframe title="Order submission response" name="submit-frame" id="submit-frame" class="sr-only"></iframe></div><aside class="ry-card">
               <div class="eyebrow">Your order at a glance</div><h2>Order summary</h2>
-              <div class="summary-line"><span>Cover type</span>
-                <strong id="summary-type">{summary_type}</strong></div>{summary_size}
-              <div class="summary-line"><span>Delivery</span>
-                <strong id="summary-delivery">Choose below</strong></div>
-              <div class="summary-line"><span>Delivery fee</span>
-                <strong id="summary-fee">—</strong></div>
+              
+<div class="summary-line">
+  <span>Cover type</span>
+  <strong id="summary-type">Not selected</strong>
+</div>
+
+<div class="summary-line">
+  <span>Size</span>
+  <strong id="summary-size">Not selected</strong>
+</div>
+
+<div class="summary-line">
+  <span>Delivery</span>
+  <strong id="summary-delivery">Choose below</strong>
+</div>
+
+<div class="summary-line">
+  <span>Delivery fee</span>
+  <strong id="summary-fee">—</strong>
+</div>
+
               <div class="summary-total"><span>Cover price</span>
                 <strong id="summary-price">{initial_price}</strong></div>
               <p class="small">The $35 non-refundable leather deposit is separate from the cover and delivery price. Custom-size pricing is confirmed after review.</p>
