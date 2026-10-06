@@ -6,7 +6,7 @@
 
 // Keep your existing Google Apps Script URL here.
 // Do not change it if you have already configured it.
-const APPS_SCRIPT_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeKOBzDe8kEZBQ25GDxTPAQIfNmV7v_niKdYklOwaq_KwdcDQ/viewform';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx2t6UlKPffVu_AnkzylsAjaOQXFJXWgYtbUC2_4h6E3ndyHlUGQsfMd1YA4zBGEJ0R/exec';
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('order-form');
