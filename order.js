@@ -527,7 +527,7 @@ document.addEventListener('DOMContentLoaded', () => {
       restoreButton();
 
       setMessage(
-        'The request was submitted, but this page could not confirm delivery. Please contact moonlightjournals.co@gmail.com to verify before sending payment.',
+        'The order was submitted, but this page could not confirm delivery. Moonlight Journals.co will reach out within 24-48 hours, please have your $35 deposit ready, thank you!',
         true
       );
     }, 12000);
